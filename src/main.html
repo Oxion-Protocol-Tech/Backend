@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="main-menu">
+            <div class="logo">
+                Oxion<span class="logo-protocol"> Protocol</span>
+            </div>
+            <div class="menu-manage">
+                <ul class="menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="main.html">Swap</a></li>
+                    <li><a href="pools.html">Pools</a></li>
+                    <li><a href="protocol.html">Protocol</a></li>
+                </ul>
+            </div>
+            <div class="connect-wallet">
+                <div class="connectWallet", id="connectWallet2">Connect Wallet</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="element">
+            <div class="button">Connect Wallet</div>
+            <div class="value-swap">
+                <div class="">1 ETH </div>
+            </div>
+            <div class="token0">
+                <div class="aufohauiofhua">Ты платишь</div>
+                <input type="number" placeholder="0" class="sdfsfs", id="input-0">
+                <button id="openModalButton" class="openModalButton">
+                    <img src="images/ETH.png" alt="" class="token0-img">
+                    <span>ETH</span>
+                </button>
+            </div>
+            <div class="revert-swap">
+                <img src="images/revert.svg" alt="" class="revert-img">
+            </div>
+            <div class="token1">
+                <div class="aufohauiofhua">Ты получаешь</div>
+                <input type="number" placeholder="0" class="sdfsfs", id="input-1">
+                <button id="openModalButton" class="openModalButton">
+                    <img src="images/USDT.png" alt="" class="token0-img">
+                    <div class="sfsdgsdgsdgsdd">USDT</div>
+                </button>
+            </div>
+            <div class="swap"">Swap</div>
+            <div class="transfer"">Transfer</div>
+
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Содержимое модального окна здесь</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="lower-menu">
+        <div class="lower-menu-min-text">Oxion Protocol</div>
+        <div class="lower-menu-main-text">
+            <div class="lower-about-us">About Us</div>
+            <div class="lower-about-us">Terms Of Use</div>
+            <div class="lower-about-us">Documentation</div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("menuButton").addEventListener("click", function() {
+        var menu = document.getElementById("menu");
+        if (menu.style.display === "none") {
+            menu.style.display = "block";
+        } else {
+            menu.style.display = "none";
+        }
+        });
+    </script>
+    <script>
+        const input1 = document.getElementById('input-0');
+        const input2 = document.getElementById('input-1');
+        
+        input1.addEventListener('input', function() {
+            // Обновляем значение второго поля ввода на основе значения первого поля
+            input2.value = input1.value;
+        });
+
+
+    </script>
+    <script>
+                    // Получение ссылок на элементы
+            var modal = document.getElementById('modal');
+            var btn = document.getElementById("openModalButton");
+            var span = document.getElementsByClassName("close")[0];
+
+            // Когда пользователь нажимает на кнопку, открыть модальное окно 
+            btn.onclick = function() {
+            modal.style.display = "block";
+            }
+
+            // Когда пользователь нажимает на крестик (x), закрыть модальное окно
+            span.onclick = function() {
+            modal.style.display = "none";
+            }
+
+            // Когда пользователь кликает вне модального окна, закрыть его
+            window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
+    <script>
+        // Функция для проверки подключения MetaMask
+        async function checkMetaMask() {
+            if (window.ethereum) {
+                try {
+                // Запрашиваем доступ к аккаунту пользователя
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                        alert('MetaMask подключен!');
+                    } catch (error) {
+                        console.error(error);
+                        alert('Отказано в доступе к MetaMask.');
+                    }
+            } else {
+                alert('MetaMask не обнаружен. Установите его для продолжения.');
+            }
+        }
+
+        // Обработчик нажатия на div
+        document.getElementById('connectWallet2').addEventListener('click', checkMetaMask);
+    </script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        var currentLocation = window.location.pathname;
+        var menuLinks = document.querySelectorAll(".menu li a");
+
+        menuLinks.forEach(function(link) {
+            if (link.getAttribute("href") === currentLocation) {
+            link.classList.add("active");
+            }
+        });
+        });
+    </script>
+</body>
+
+</html>
